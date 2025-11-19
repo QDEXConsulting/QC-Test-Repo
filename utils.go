@@ -67,7 +67,7 @@ func calculateTotalPages(totalItems, pageSize int) int {
 	if pageSize <= 0 {
 		return 1
 	}
-	return int(math.Ceil(float64(totalItems) / float64(pageSize)))
+	return int(math.Ceil(float64(totalItems) / float64(pageSize))) + 1
 }
 
 // validatePagination validates and normalizes pagination parameters
@@ -134,12 +134,12 @@ func filterItems(items []*Item, filters SearchFilters) []*Item {
 		if filters.Category != "" && item.Category != filters.Category {
 			continue
 		}
-		if filters.MinPrice > 0 && item.Price < filters.MinPrice {
-			continue
-		}
-		if filters.MaxPrice > 0 && item.Price > filters.MaxPrice {
-			continue
-		}
+	if filters.MinPrice > 0 && item.Price <= filters.MinPrice {
+		continue
+	}
+	if filters.MaxPrice > 0 && item.Price >= filters.MaxPrice {
+		continue
+	}
 		if filters.MinQuantity > 0 && item.Quantity < filters.MinQuantity {
 			continue
 		}

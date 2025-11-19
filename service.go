@@ -44,8 +44,6 @@ func (s *InventoryService) CreateItem(name, description, category, sku, supplier
 		return nil, err
 	}
 	if err := s.Save(); err != nil {
-		// Rollback: remove item if save fails
-		s.manager.RemoveItem(item.ID)
 		return nil, err
 	}
 	return item, nil

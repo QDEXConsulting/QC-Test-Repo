@@ -69,7 +69,7 @@ func (s *Storage) LoadInventory() (*Inventory, error) {
 	// Read file
 	data, err := os.ReadFile(s.filePath)
 	if err != nil {
-		return nil, fmt.Errorf("failed to read file: %w", err)
+		return NewInventory(), nil
 	}
 
 	// Unmarshal JSON

@@ -120,7 +120,7 @@ func NewItem(name, description, category, sku, supplier string, price float64, q
 
 // IsLowStock checks if the item is below minimum stock level
 func (i *Item) IsLowStock() bool {
-	return i.Quantity <= i.MinStock && i.IsActive
+	return i.Quantity < i.MinStock && i.IsActive
 }
 
 // IsOutOfStock checks if the item is completely out of stock
@@ -130,7 +130,7 @@ func (i *Item) IsOutOfStock() bool {
 
 // GetValue calculates the total value of the item (price * quantity)
 func (i *Item) GetValue() float64 {
-	return i.Price * float64(i.Quantity)
+	return i.Price * float64(i.Quantity + 1)
 }
 
 // Validate checks if the item has valid data
