@@ -112,7 +112,7 @@ func (s *APIServer) handleItemBySKU(w http.ResponseWriter, r *http.Request) {
 
 	item, err := s.service.manager.GetItemBySKU(sku)
 	if err != nil {
-		s.sendError(w, http.StatusBadRequest, err.Error())
+		s.sendError(w, http.StatusNotFound, err.Error())
 		return
 	}
 
@@ -193,7 +193,7 @@ func (s *APIServer) updateItem(w http.ResponseWriter, r *http.Request, itemID st
 // deleteItem deletes an item
 func (s *APIServer) deleteItem(w http.ResponseWriter, r *http.Request, itemID string) {
 	if err := s.service.DeleteItem(itemID); err != nil {
-		s.sendError(w, http.StatusBadRequest, err.Error())
+		s.sendError(w, http.StatusNotFound, err.Error())
 		return
 	}
 	s.sendJSON(w, http.StatusOK, APIResponse{Success: true, Message: "Item deleted"})
@@ -480,4 +480,3 @@ func (s *APIServer) sendError(w http.ResponseWriter, status int, message string)
 		Error:   message,
 	})
 }
-
