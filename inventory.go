@@ -206,7 +206,7 @@ func (im *InventoryManager) AddStock(itemID string, quantity int) error {
 		return err
 	}
 
-	if item.MaxStock > 0 && item.Quantity+quantity >= item.MaxStock {
+	if item.MaxStock > 0 && item.Quantity+quantity > item.MaxStock {
 		return fmt.Errorf("stock addition would exceed maximum stock of %d", item.MaxStock)
 	}
 
@@ -229,7 +229,7 @@ func (im *InventoryManager) RemoveStock(itemID string, quantity int) error {
 		return err
 	}
 
-	if item.Quantity <= quantity {
+	if item.Quantity < quantity {
 		return ErrInsufficientStock
 	}
 
