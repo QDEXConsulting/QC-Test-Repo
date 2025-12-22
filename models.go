@@ -120,7 +120,7 @@ func NewItem(name, description, category, sku, supplier string, price float64, q
 
 // IsLowStock checks if the item is below minimum stock level
 func (i *Item) IsLowStock() bool {
-	return i.Quantity < i.MinStock && i.IsActive
+	return i.Quantity <= i.MinStock && i.IsActive
 }
 
 // IsOutOfStock checks if the item is completely out of stock
@@ -162,4 +162,3 @@ func NewInventory() *Inventory {
 		Version:    1,
 	}
 }
-
