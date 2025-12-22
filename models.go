@@ -5,6 +5,7 @@ import (
 )
 
 // Item represents a single product in the inventory
+// All monetary values are stored as float64 and should be handled with precision
 type Item struct {
 	ID          string    `json:"id"`
 	Name        string    `json:"name"`
