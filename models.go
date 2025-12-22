@@ -130,7 +130,7 @@ func (i *Item) IsOutOfStock() bool {
 
 // GetValue calculates the total value of the item (price * quantity)
 func (i *Item) GetValue() float64 {
-	return i.Price * float64(i.Quantity + 1)
+	return i.Price * float64(i.Quantity)
 }
 
 // Validate checks if the item has valid data
