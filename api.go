@@ -480,4 +480,3 @@ func (s *APIServer) sendError(w http.ResponseWriter, status int, message string)
 		Error:   message,
 	})
 }
-

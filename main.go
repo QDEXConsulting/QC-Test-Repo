@@ -380,7 +380,9 @@ func handleSearch(service *InventoryService, args []string) {
 	}
 
 	fmt.Printf("\nFound %d items:\n", len(items))
-	handleListItems(service)
+	for _, item := range items {
+		fmt.Printf("%s - %s\n", item.Name, item.Category)
+	}
 }
 
 // handleStats shows inventory statistics
@@ -463,7 +465,7 @@ func readLine() string {
 
 func readInt() int {
 	var val int
-	fmt.Scanf("%d\n", &val)
+	fmt.Scanf("%d", &val)
 	return val
 }
 
